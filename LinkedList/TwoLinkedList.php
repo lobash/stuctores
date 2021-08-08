@@ -1,7 +1,6 @@
 <?php
 
-
-namespace LinkedList\one;
+namespace LinkedList;
 
 
 use Exception;
@@ -21,8 +20,10 @@ class TwoLinkedList
         }
     }
 
-    public function addNodeLast(Node $node)
+    public function addNodeLast(int $value)
     {
+        $node = new Node($value);
+
         if ($this->isEmptyList()) {
             $this->head = $node;
             $this->tail = $node;
@@ -36,8 +37,9 @@ class TwoLinkedList
         $this->count++;
     }
 
-    public function addNodeFirst(Node $node)
+    public function addNodeFirst(int $value)
     {
+        $node = new Node($value);
 
         if ($this->isEmptyList()) {
             $this->head = $node;

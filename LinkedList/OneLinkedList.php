@@ -1,8 +1,6 @@
 <?php
 
-
-namespace LinkedList\one;
-
+namespace LinkedList;
 
 use Exception;
 
@@ -21,16 +19,18 @@ class OneLinkedList
         }
     }
 
-    public function addNodeLast(Node $node)
+    public function add(int $value)
     {
+        $node = new Node($value);
+
         if ($this->isEmptyList()) {
             $this->head = $node;
+            $this->tail = $node;
 
         } else {
             $this->tail->next = $node;
-            $node->previous = $this->tail;
+            $this->tail = $node;
         }
-        $this->tail = $node;
         $this->count++;
     }
 
@@ -64,23 +64,22 @@ class OneLinkedList
 
         while ($current !== null) {
 
-            if ($current->getValue() === $value) {
+            if ($current->value === $value) {
 
-                if ($previous !== null) {
-                    $previous->setNext($current->getNext());
-
-                    if ($current->getNext() === null) {
-                        $this->tail = $previous;
-                    }
+                if ($previous === null) {
+                    $this->removeNodeFirst();
 
                 } else {
-                    $this->removeNodeFirst();
+                    $previous->next = $current->next;
+                    if ($current->next === null) {
+                        $this->tail = $previous;
+                    }
                 }
-
                 $this->count--;
             }
             $previous = $current;
             $current = $current->getNext();
+
         }
     }
 

@@ -1,5 +1,5 @@
 <?php
-namespace LinkedList\one;
+namespace LinkedList;
 
 class Node
 {
@@ -7,7 +7,6 @@ class Node
     public ?Node $next = null;
     public ?Node $previous = null;
 
-    public int $count = 0;
 
     public function __construct(int $value)
     {
